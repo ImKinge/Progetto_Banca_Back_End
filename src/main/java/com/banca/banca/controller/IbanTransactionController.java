@@ -34,6 +34,7 @@ public class IbanTransactionController {
      * Chiamata per ritornarmi una lista di transazioni iban tramite un fiscalCode che recuperiamo dall'header della chiamata
      *
      * Una volta fatto il login ci verrà restituito un token che noi tramite @RequestHeader andiamo a recuperare e valutare
+     *
      * Tramite il metodo della classe JwtGenerator = getFiscalCodeFromJWT() andiamo a recuperare il fiscalCode e lo usiamo per farci restituire
      * la lista delle transazioni di un utente sia che è beneficiario sia che è ordinario
      *

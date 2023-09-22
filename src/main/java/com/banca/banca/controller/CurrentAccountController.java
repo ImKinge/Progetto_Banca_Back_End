@@ -1,10 +1,8 @@
 package com.banca.banca.controller;
 
 import com.banca.banca.dto.CurrentAccountDto;
-import com.banca.banca.dto.CustomerDataDto;
 import com.banca.banca.dto.ResponseDto;
 import com.banca.banca.exception.CurrentAccountException;
-import com.banca.banca.exception.CustomerDataException;
 import com.banca.banca.service.CurrentAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

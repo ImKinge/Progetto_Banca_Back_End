@@ -1,9 +1,11 @@
 package com.banca.banca.repository;
 
+import com.banca.banca.dto.ReportTransactionRequestDto;
 import com.banca.banca.entity.IbanTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,5 +27,10 @@ public interface IbanTransactionRepository extends JpaRepository <IbanTransactio
     @Query(value = "select i from IbanTransaction i where i.customerDataOr.fiscalCode=?1 or i.customerDataBf.fiscalCode=?1 ORDER BY i.dateTransaction DESC")
     List<IbanTransaction> findAllTransactionByFiscalCode (String fiscalCode);
 
+    /*
+
+     */
+    @Query(value = "select i from IbanTransaction i where i.customerDataOr.fiscalCode=?1 and i.dateTransaction between ?2 and ?3")
+    List<IbanTransaction> makeReportTransactionIban (String fiscalCode, LocalDateTime startDate, LocalDateTime endDate);
 
 }

@@ -1,5 +1,6 @@
 package com.banca.banca.dto;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
  * e riutilizzabile per tutte le ResponseEntity dei Controller
  * @param <T>
  */
+@Getter
 public class ResponseDto <T> {
 
     /**
@@ -29,29 +31,16 @@ public class ResponseDto <T> {
         this.success = success;
     }
 
-
     //Getter and Setter
-    public T getResponseBody() {
-        return responseBody;
-    }
-
     public void setResponseBody(T responseBody) {
         this.responseBody = responseBody;
     }
 
 
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
     public void setHttpStatus(HttpStatus httpStatus) {
         this.httpStatus = httpStatus;
     }
 
-
-    public Boolean getSuccess() {
-        return success;
-    }
 
     public void setSuccess(Boolean success) {
         this.success = success;

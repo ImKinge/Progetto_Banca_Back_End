@@ -74,6 +74,7 @@ public class CustomerDataServiceImpl implements CustomerDataService {
 
         CurrentAccount currentAccount = new CurrentAccount();
         currentAccount.setIbanNumber(bankHelper.generateIban());
+        currentAccount.setBalance(10000.00);
         currentAccount.setCustomerData(customerData);
         currentAccountRepository.save(currentAccount);
 

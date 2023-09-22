@@ -1,10 +1,9 @@
 package com.banca.banca.dto;
 
-import org.springframework.http.HttpStatus;
-
-import java.util.ArrayList;
+import lombok.Getter;
 import java.util.List;
 
+@Getter
 public class BaseResponse<T> {
 
 //    boolean success;
@@ -26,10 +25,6 @@ public class BaseResponse<T> {
 //    public void setErrors(List<String> errors) {
 //        this.errors = errors;
 //    }
-
-    public T getRes() {
-        return res;
-    }
 
     public void setRes(T res) {
         this.res = res;

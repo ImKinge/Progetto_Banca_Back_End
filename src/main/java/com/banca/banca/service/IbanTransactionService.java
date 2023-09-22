@@ -7,6 +7,7 @@ import com.banca.banca.exception.CurrentAccountException;
 import com.banca.banca.exception.CustomerDataException;
 import com.banca.banca.exception.TransferException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,4 +18,6 @@ public interface IbanTransactionService {
     List<IbanTransactionDto> getIbanTransaction (String fiscalCode);
 
     IbanTransaction makeTransfers(TransferDto transferDto, String token) throws TransferException, CustomerDataException, CurrentAccountException;
+
+    List<IbanTransactionDto> getRangeDateTransaction (LocalDateTime dateStart, LocalDateTime dateEnd, String token) throws TransferException;
 }

@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -78,10 +79,12 @@ public class IbanTransactionServiceImpl implements IbanTransactionService {
      * Faccio la query per trovare l'iban del beneficiario per un determinato ibanNumber
      * Vado a fare un controllo per l'iban del beneficiario che mi occorre per fare il bonifico facendo una query dove mi restituisce
      * quel determinato record dell'iban del beneficiario se esiste, altrimenti torna una eccezione se non esiste
+     *
      * Una volta restituito vado a fare delle operazioni sui balance dei due iban che si sono scambiati i soldi:
      * per il beneficiario andro ad inserire un'operazione del balance + l'importo dell'oggetto passato in entrata al metodo
      * e faccio una salvataggio(update) di quel conto corrente.
      * Stessa cosa per l'ordinario ma stavolta sarà balance - l'importo
+     *
      * Il beneficiario otterrà i soldi del beneficiario e quindi un incremento del suo budget
      * L'ordinario avrà un decremento del suo budget
      * Infine salvo il record (oggetto IbanTransaction) dentro alla tabella delle transazioni dell'iban iban_transaction
@@ -180,9 +183,17 @@ public class IbanTransactionServiceImpl implements IbanTransactionService {
 
         IbanTransaction ibanTransaction = new IbanTransaction();
         ibanTransaction.setAmount(transferAmount);
-        ibanTransaction.setDateTransaction(localDateTime);
         ibanTransaction.setDescriptionTransaction("Bonifico: " + transferDto.getDescription());
 
+        /*
+        Inizializziamo una data che avra sempre dato odierno e la andiamo a confrontare con quella che inseriremo da front-end
+        Se la data scelta è il giorno prima lancia una eccezione, altrimenti la settiamo "ibanTransaction.setDateTransaction(localDateTime);"
+         */
+        LocalDateTime now = LocalDateTime.now();
+        if(localDateTime.isBefore(now)) {
+            throw new TransferException("Enter a date greater than or equal to today's date");
+        }
+        ibanTransaction.setDateTransaction(localDateTime);
 
         if(!currentAccountBeneficiary.getCustomerData().getName().equals(transferName) &&
                 !currentAccountBeneficiary.getCustomerData().getSurname().equals(transferSurname)) {
@@ -213,5 +224,20 @@ public class IbanTransactionServiceImpl implements IbanTransactionService {
         return ibanTransactionRepository.save(ibanTransaction);
     }
 
+    @Override
+    public List<IbanTransactionDto> getRangeDateTransaction(LocalDateTime dateStart, LocalDateTime dateEnd, String fiscalCode) throws TransferException {
+
+        List<IbanTransaction> ibanTransactions = new ArrayList<>();
+
+        LocalDateTime now = LocalDateTime.now();
+        if(dateStart.isAfter(now) || dateEnd.isAfter(now)) {
+            throw new TransferException("Enter a date that is no later than today");
+        }
+
+        ibanTransactions = ibanTransactionRepository.makeReportTransactionIban(fiscalCode, dateStart, dateEnd);
+
+        return ibanTransactionMapper.toListIbanTransactionDto(ibanTransactions);
+
+    }
 
 }
