@@ -53,4 +53,19 @@ public class BankHelper {
         return bufferCard;
 
     }
+
+    public String generateSerialOrder () {
+
+        String prefix = "IT";
+        final String number = "123456789";
+        final int n = number.length();
+
+        Random r = new Random();
+
+        for (int i = 0; i < 7; i++) {
+            prefix += (number.charAt(r.nextInt(n)));
+        }
+
+        return prefix;
+    }
 }

@@ -32,7 +32,7 @@ public class ReportController {
     @PostMapping("/download")
     public ResponseEntity<ResponseDto<String>> getReportTransaction (@RequestHeader (HttpHeaders.AUTHORIZATION) String token,
                                                                      @RequestBody ReportTransactionRequestDto reportTransactionRequestDto,
-                                                                     HttpServletResponse response) throws TransferException, IOException {
+                                                                     HttpServletResponse response) throws IOException {
         ICsvBeanWriter csvWriter = null;
 
         try {

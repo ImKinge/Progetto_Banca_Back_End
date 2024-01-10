@@ -16,7 +16,7 @@ public class JWTGenerator {
     /**
      * Metodo che ci permette di generare un jwt token con le dipendenze io.jsonwebtoken
      * Abbiamo settato lo username, la scadenze e la secret
-     * che troviamo nella classi di constanti che anbbiamo creato noi SecurityConstant
+     * che troviamo nella classi di constanti che abbiamo creato noi SecurityConstant
      *
      * @param
      * @return

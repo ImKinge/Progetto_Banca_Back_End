@@ -53,6 +53,9 @@ public class CustomerData {
     private List<IbanTransaction> ibanTransactionsBf = new ArrayList<>();
 
     @OneToMany(mappedBy = "customerData")
+    private List<DetailsCustomerServiceBank> detailsCustomerServiceBankList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "customerData")
     private List<CurrentAccount> currentAccountList;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -65,7 +68,7 @@ public class CustomerData {
     //Constructor
     public CustomerData() {}
 
-    public CustomerData(String fiscalCode, String name, String surname, LocalDate dateOfBirth, String email, Long infoPhone, String address, String userName, String password) {
+    public CustomerData(String fiscalCode, String name, String surname, LocalDate dateOfBirth, String email, Long infoPhone, String address, String userName, String password, List<CardTransaction> cardTransactionOr, List<CardTransaction> cardTransactionBf, List<IbanTransaction> ibanTransactionsOr, List<IbanTransaction> ibanTransactionsBf, List<DetailsCustomerServiceBank> detailsCustomerServiceBankList, List<CurrentAccount> currentAccountList, List<Role> roles) {
         this.fiscalCode = fiscalCode;
         this.name = name;
         this.surname = surname;
@@ -75,8 +78,14 @@ public class CustomerData {
         this.address = address;
         this.userName = userName;
         this.password = password;
+        this.cardTransactionOr = cardTransactionOr;
+        this.cardTransactionBf = cardTransactionBf;
+        this.ibanTransactionsOr = ibanTransactionsOr;
+        this.ibanTransactionsBf = ibanTransactionsBf;
+        this.detailsCustomerServiceBankList = detailsCustomerServiceBankList;
+        this.currentAccountList = currentAccountList;
+        this.roles = roles;
     }
-
 
     //Getter and Setter
     public String getFiscalCode() {
@@ -173,5 +182,45 @@ public class CustomerData {
 
     public void setCurrentAccountList(List<CurrentAccount> currentAccountList) {
         this.currentAccountList = currentAccountList;
+    }
+
+    public List<CardTransaction> getCardTransactionOr() {
+        return cardTransactionOr;
+    }
+
+    public void setCardTransactionOr(List<CardTransaction> cardTransactionOr) {
+        this.cardTransactionOr = cardTransactionOr;
+    }
+
+    public List<CardTransaction> getCardTransactionBf() {
+        return cardTransactionBf;
+    }
+
+    public void setCardTransactionBf(List<CardTransaction> cardTransactionBf) {
+        this.cardTransactionBf = cardTransactionBf;
+    }
+
+    public List<IbanTransaction> getIbanTransactionsOr() {
+        return ibanTransactionsOr;
+    }
+
+    public void setIbanTransactionsOr(List<IbanTransaction> ibanTransactionsOr) {
+        this.ibanTransactionsOr = ibanTransactionsOr;
+    }
+
+    public List<IbanTransaction> getIbanTransactionsBf() {
+        return ibanTransactionsBf;
+    }
+
+    public void setIbanTransactionsBf(List<IbanTransaction> ibanTransactionsBf) {
+        this.ibanTransactionsBf = ibanTransactionsBf;
+    }
+
+    public List<DetailsCustomerServiceBank> getDetailsCustomerServiceBankList() {
+        return detailsCustomerServiceBankList;
+    }
+
+    public void setDetailsCustomerServiceBankList(List<DetailsCustomerServiceBank> detailsCustomerServiceBankList) {
+        this.detailsCustomerServiceBankList = detailsCustomerServiceBankList;
     }
 }

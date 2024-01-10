@@ -1,6 +1,4 @@
 package com.banca.banca.repository;
-
-import com.banca.banca.dto.ReportTransactionRequestDto;
 import com.banca.banca.entity.IbanTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

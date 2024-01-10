@@ -24,6 +24,8 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
+    @Value("${allowed.origin}")
+    private String allowedOrigin;
 
     /**
      * SecurityFilterChain si basa su una catena di filtri servlet, ognuno con una responsabilità specifica
@@ -75,8 +77,6 @@ public class SecurityConfig {
         return new JWTAuthenticationFilter();
     }
 
-    @Value("${allowed.origin}")
-    private String allowedOrigin;
 
 
 //    @Bean

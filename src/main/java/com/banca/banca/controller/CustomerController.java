@@ -5,8 +5,10 @@ import com.banca.banca.dto.ResponseDto;
 import com.banca.banca.exception.CustomerDataException;
 import com.banca.banca.exception.RoleException;
 import com.banca.banca.model.JwtRequest;
+import com.banca.banca.security.jwt.JWTGenerator;
 import com.banca.banca.service.CustomerDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +23,14 @@ public class CustomerController {
     @Autowired
     private CustomerDataService customerDataService;
 
+    @Autowired
+    private JWTGenerator jwtGenerator;
 
-    @GetMapping("/find-customer/{fiscalCode}")
-    public ResponseEntity<ResponseDto<CustomerDataDto>> findByFiscalCode (@PathVariable String fiscalCode) {
+
+    @GetMapping("/find-customer")
+    public ResponseEntity<ResponseDto<CustomerDataDto>> findByFiscalCode (@RequestHeader (HttpHeaders.AUTHORIZATION) String token) {
+
+        String fiscalCode = jwtGenerator.getFiscalCodeFromJWT(token);
         try {
             CustomerDataDto customerDataDto = customerDataService.findByFiscalCode(fiscalCode);
             return new ResponseEntity<>(new ResponseDto<>(customerDataDto, HttpStatus.OK, true), HttpStatus.OK);
