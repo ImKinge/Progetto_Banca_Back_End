@@ -45,6 +45,7 @@ public class CustomerController {
     //POST
     @PostMapping("/save")
     public ResponseEntity<ResponseDto<String>> saveCliente(@RequestBody CustomerDataDto customerDataDto) throws RoleException {
+
         customerDataService.saveCustomer(customerDataDto);
 
         return new ResponseEntity<>(new ResponseDto<>("Registrazione avvenuta con successo!", HttpStatus.OK, true), HttpStatus.OK);

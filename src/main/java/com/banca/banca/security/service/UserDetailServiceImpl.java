@@ -34,7 +34,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     /**
      * Metodo di utility che mi permette di convertire le role in GRANTED AUTHORITIES (autorità concesse)
-     * perchènel metodo loadUserByUsername lo User ha come parametri del costruttore
+     * perchè nel metodo loadUserByUsername lo User ha come parametri del costruttore
      * User(String username, String password, Collection<GrantedAuthority> authorities)
      * quindi queste role andranno inserite nella Collection
      *

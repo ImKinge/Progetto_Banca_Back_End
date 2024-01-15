@@ -26,13 +26,12 @@ public class ServiceBank {
 
     public ServiceBank () {}
 
-    public ServiceBank(Integer id, String category, String serviceName, Double monthlyFee, String description, List<DetailsCustomerServiceBank> detailsCustomerServiceBankList) {
+    public ServiceBank(Integer id, String category, String serviceName, Double monthlyFee, String description) {
         this.id = id;
         this.category = category;
         this.serviceName = serviceName;
         this.monthlyFee = monthlyFee;
         this.description = description;
-        this.detailsCustomerServiceBankList = detailsCustomerServiceBankList;
     }
 
 
@@ -76,11 +75,4 @@ public class ServiceBank {
         this.description = description;
     }
 
-    public List<DetailsCustomerServiceBank> getDetailsCustomerServiceBankList() {
-        return detailsCustomerServiceBankList;
-    }
-
-    public void setDetailsCustomerServiceBankList(List<DetailsCustomerServiceBank> detailsCustomerServiceBankList) {
-        this.detailsCustomerServiceBankList = detailsCustomerServiceBankList;
-    }
 }

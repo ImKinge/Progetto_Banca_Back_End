@@ -1,36 +1,32 @@
-package com.banca.banca.entity;
+package com.banca.banca.dto;
 
-import jakarta.persistence.*;
+import com.banca.banca.entity.CustomerData;
+import com.banca.banca.entity.ServiceBank;
 
+public class CartDto {
 
-@Entity
-public class Cart {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
     private ServiceBank serviceBank;
 
-    @OneToOne
     private CustomerData customerData;
 
+    public CartDto () {
 
-    public Cart() {
     }
 
-    public Cart(ServiceBank serviceBank, CustomerData customerData) {
+    public CartDto(Integer id, ServiceBank serviceBank, CustomerData customerData) {
+        this.id = id;
         this.serviceBank = serviceBank;
         this.customerData = customerData;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public ServiceBank getServiceBank() {

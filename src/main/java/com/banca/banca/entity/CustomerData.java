@@ -68,6 +68,16 @@ public class CustomerData {
     //Constructor
     public CustomerData() {}
 
+    public CustomerData(String fiscalCode, String name, String surname, LocalDate dateOfBirth, String email, Long infoPhone, String address) {
+        this.fiscalCode = fiscalCode;
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.infoPhone = infoPhone;
+        this.address = address;
+    }
+
     public CustomerData(String fiscalCode, String name, String surname, LocalDate dateOfBirth, String email, Long infoPhone, String address, String userName, String password, List<CardTransaction> cardTransactionOr, List<CardTransaction> cardTransactionBf, List<IbanTransaction> ibanTransactionsOr, List<IbanTransaction> ibanTransactionsBf, List<DetailsCustomerServiceBank> detailsCustomerServiceBankList, List<CurrentAccount> currentAccountList, List<Role> roles) {
         this.fiscalCode = fiscalCode;
         this.name = name;
@@ -184,43 +194,4 @@ public class CustomerData {
         this.currentAccountList = currentAccountList;
     }
 
-    public List<CardTransaction> getCardTransactionOr() {
-        return cardTransactionOr;
-    }
-
-    public void setCardTransactionOr(List<CardTransaction> cardTransactionOr) {
-        this.cardTransactionOr = cardTransactionOr;
-    }
-
-    public List<CardTransaction> getCardTransactionBf() {
-        return cardTransactionBf;
-    }
-
-    public void setCardTransactionBf(List<CardTransaction> cardTransactionBf) {
-        this.cardTransactionBf = cardTransactionBf;
-    }
-
-    public List<IbanTransaction> getIbanTransactionsOr() {
-        return ibanTransactionsOr;
-    }
-
-    public void setIbanTransactionsOr(List<IbanTransaction> ibanTransactionsOr) {
-        this.ibanTransactionsOr = ibanTransactionsOr;
-    }
-
-    public List<IbanTransaction> getIbanTransactionsBf() {
-        return ibanTransactionsBf;
-    }
-
-    public void setIbanTransactionsBf(List<IbanTransaction> ibanTransactionsBf) {
-        this.ibanTransactionsBf = ibanTransactionsBf;
-    }
-
-    public List<DetailsCustomerServiceBank> getDetailsCustomerServiceBankList() {
-        return detailsCustomerServiceBankList;
-    }
-
-    public void setDetailsCustomerServiceBankList(List<DetailsCustomerServiceBank> detailsCustomerServiceBankList) {
-        this.detailsCustomerServiceBankList = detailsCustomerServiceBankList;
-    }
 }
