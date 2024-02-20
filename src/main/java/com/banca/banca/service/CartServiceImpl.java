@@ -19,8 +19,6 @@ import java.util.List;
 @Service
 public class CartServiceImpl implements CartService {
 
-    @Autowired
-    private JWTGenerator jwtGenerator;
 
     @Autowired
     private CartMapper cartMapper;
